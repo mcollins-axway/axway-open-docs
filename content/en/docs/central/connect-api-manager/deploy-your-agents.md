@@ -69,11 +69,10 @@ The containerized agent can run in the following mode:
     port: 8075
     discoveryIgnoreTags: tag1, tag2
     filter:
-    proxyApicIDField: apicId
     subscriptionApplicationField: subscriptions
     pollInterval: 30s
-    SSL:
-     INSECURESKIPVERIFY: true
+    ssl:
+     insecureSkipVerify: true
     auth:
      username: apiManagerUser
      password: apiManagerUserPassword
@@ -100,12 +99,16 @@ The containerized agent can run in the following mode:
     level: debug
     format: json
     output: stdout
-    path: logs
+    maskedValues: keyword1, keyword2, keyword3
+
+   status:
+    healthCheckInterval: 30s
    ```
 
-   * The value for *teamID* can be found in [AMPLIFY Central > Access > Teams](https://apicentral.axway.com/access/teams/).
+   * The value for *team* can be found in [AMPLIFY Central > Access > Teams](https://apicentral.axway.com/access/teams/).
    * The value for *organizationID* can be found in AMPLIFY Central Platform > Organization.
    * The value for *clientId* can be found in Service Account. See [Create a service account](/docs/central/cli_central/cli_install/#create-a-service-account).
+   * The value for *healthCheckInterval* can be between 30 seconds and 5 minutes. To specify the value in seconds use an 's' character (e.g. 30s). To specify the value in minutes, use a an 'm' character (e.g. 5m).
 5. Run the binary Discovery Agent:
 
    * Open a shell and run the following commands to start up your agent.  Add necessary [Agent flags](/docs/central/connect-api-manager/discovery-agent-flags/).
@@ -114,7 +117,12 @@ The containerized agent can run in the following mode:
      cd /home/APIC-agents
      ./discovery_agent
      ```
+   * To use env_vars file for overriding configuration, create env_vars file with definition of environment variables and run the following command. See [Agent variables](/docs/central/connect-api-manager/agent-variables/) for a reference to variable descriptions.
 
+     ```shell
+     cd /home/APIC-agents
+     ./discovery_agent --envFile ./env_vars
+     ```
    * To verify that the agent is up and running, open another shell command and run:
 
      ```shell
@@ -140,7 +148,7 @@ APIGATEWAY_AUTH_PASSWORD=<PASSWORD>
 
 # AMPLIFY connectivity
 CENTRAL_ORGANIZATIONID=<ORGANIZATIONID>
-CENTRAL_TEAM=<TEAM>
+CENTRAL_TEAM=<AMPLIFYCentralTeamName>
 CENTRAL_AUTH_CLIENTID=<CLIENTID, ie. DOSA_12345...>
 ```
 
@@ -181,7 +189,7 @@ The agent can run in the following modes:
     * Default: located in the same directory as the agent binary.
     * Optional: use a dedicated folder where the configuration file is located (use the --path.config flag in the agent command line to access the file path).
     * Advanced configuration: properties inside the configuration file can reference environment variables. This enables you to set up only one configuration file that addresses different behaviors (depending on the environment variables). See [Agent variables](/docs/central/connect-api-manager/agent-variables/).
-* With command line argument. See [Traceability Agent flags](/docs/central/connect-api-manager/traceability-agent-flags/).
+* With command line argument. See [Traceability Agent flags](/docs/central/connect-api-manager/discovery-agent-flags/).
 
 ### Installing the Traceability Agent
 
@@ -198,78 +206,103 @@ To install the binary Traceability Agent:
 4. Customize traceability_agent section by setting configuration values to point to the event logs path,  API Gateway, API Manager, and AMPLIFY Central.  There are 2 options to set values:
 
    * `env_vars` file
-   * `discovery_agent.yml`:
+   * `traceability_agent.yml`:
 
    ```yaml
    ################### Beat Configuration #########################
    traceability_agent:
-    inputs:
-     - type: log
-       paths:
+     inputs:
+       - type: log
+        paths:
          - <PATH_TO>/group-X_instance-Y.log
-      include_lines: ['.*"type":"transaction".*"type":"http".*']
+        include_lines: ['.*"type":"transaction".*"type":"http".*']
+
+     central:
+        url: https://apicentral.axway.com
+        organizationID: 68794y2
+        team: Dev
+        deployment: prod
+        environment: my-v7-env
+        auth:
+          url: https://login.axway.com/auth
+          realm: Broker
+          clientId: "DOSA_68732642t64545..."
+          privateKey: /home/APIC-agents/private_key.pem}
+          publicKey: /home/APIC-agents/public_key.pem}
+          keyPassword: ""
+        timeout: 10s
+     apigateway:
+       getHeaders: true
+       host: localhost
+       port: 8090
+       pollInterval: 1m
+       auth:
+         username: myApiGatewayOperatorUser
+         password: myApiGatewayOperatorUserPassword
+     apimanager:
+       host: localhost
+       port: 8075
+       pollInterval: 1m
+       apiVersion: 1.3
+       auth:
+         username: myApiManagerUserName
+         password: myApiManagerUserPassword
 
    # Send output to Central Database
    output.traceability:
-    enabled: true
-    hosts: ${LOGSTASH_URL:ingestion-lumberjack.datasearch.axway.com:453}
-    ssl:
      enabled: true
-     verification_mode: none
-     cipher_suites:
-      - "ECDHE-ECDSA-AES-128-GCM-SHA256"
-      - "ECDHE-ECDSA-AES-256-GCM-SHA384"
-      - "ECDHE-ECDSA-AES-128-CBC-SHA256"
-      - "ECDHE-ECDSA-CHACHA20-POLY1305"
-      - "ECDHE-RSA-AES-128-CBC-SHA256"
-      - "ECDHE-RSA-AES-128-GCM-SHA256"
-      - "ECDHE-RSA-AES-256-GCM-SHA384"
-     proxy_url: ${LOGSTASH_PROXYURL:""}
-     agent:
-      central:
-       url: https://apicentral.axway.com
-       organizationID: 68794y2
-       deployment: prod
-       environment: my-v7-env
-       auth:
-        url: https://login.axway.com/auth
-        realm: Broker
-        clientId: "DOSA_68732642t64545..."
-        privateKey: /home/APIC-agents/private_key.pem}
-        publicKey: /home/APIC-agents/public_key.pem}
-        keyPassword: ""
-        timeout: 10s
-     apigateway:
-      getHeaders: true
-      host: localhost
-      port: 8090
-      pollInterval: 1m
-      auth:
-        username: myApiGatewayOperatorUser
-        password: myApiGatewayOperatorUserPassword
-     apimanager:
-      host: localhost
-      port: 8075
-      pollInterval: 1m
-      apiVersion: 1.3
-      proxyApicIDField: apicId
-      auth:
-        username: myApiManagerUserName
-        password: myApiManagerUserPassword
+     hosts: ${TRACEABILITY_HOST:ingestion-lumberjack.datasearch.axway.com:453}
+     protocol: ${TRACEABILITY_PROTOCOL:"tcp"}
+     compression_level: ${TRACEABILITY_COMPRESSIONLEVEL:3}
+     bulk_max_size: ${TRACEABILITY_BULKMAXSIZE:100}
+     timeout: ${TRACEABILITY_TIMEOUT:300s}
+     pipelining: 0
+     ssl:
+       enabled: true
+       verification_mode: none
+       cipher_suites:
+         - "ECDHE-ECDSA-AES-128-GCM-SHA256"
+         - "ECDHE-ECDSA-AES-256-GCM-SHA384"
+         - "ECDHE-ECDSA-AES-128-CBC-SHA256"
+         - "ECDHE-ECDSA-CHACHA20-POLY1305"
+         - "ECDHE-RSA-AES-128-CBC-SHA256"
+         - "ECDHE-RSA-AES-128-GCM-SHA256"
+         - "ECDHE-RSA-AES-256-GCM-SHA384"
+     proxy_url: ${TRACEABILITY_PROXYURL:""}
+
+   queue:
+     mem:
+       events: ${QUEUE_MEM_EVENTS:2048}
+       flush:
+         min_events: ${QUEUE_MEM_FLUSH_MINEVENTS:100}
+         timeout: ${QUEUE_MEM_FLUSH_TIMEOUT:1s}
 
    logging:
-    metrics:
-     enabled: false
-    # Send all logging output to stderr
-    to_stderr: true
-    # Set log level
-    level: ${LOG_LEVEL:info}
+     metrics:
+        enabled: false
+   # Send all logging output to stderr
+     to_stderr: true
+   # Set log level
+     level: ${LOG_LEVEL:info}
    ```
 
    * The value for *organizationID* can be found in AMPLIFY Central Platform > Organization.
    * The value for *clientId* can be found in Service Account. See [Create a Service in AMPLIFY Central](/docs/central/connect-api-manager/prepare-amplify-central/).
    * Traceability Agent variables can be found at [Agent variables](/docs/central/connect-api-manager/agent-variables/).
-5. Once the YAML file is updated, start the Traceability Agent. If the YAML file is in the same folder, run `./traceability_agent` script. Otherwise, pass the command-line flags that are documented at [Traceability Agent flags](/docs/central/connect-api-manager/traceability-agent-flags/).
+5. Run the binary Traceability Agent:
+
+   * Once the YAML file is updated, start the Traceability Agent. If the YAML file is in the same folder, run the following command. Otherwise, pass the command-line flags that are documented at [Traceability Agent flags](/docs/central/connect-api-manager/discovery-agent-flags/).
+
+     ```shell
+     cd /home/APIC-agents
+     ./traceability_agent
+     ```
+   * To use env_vars file for overriding configuration, create env_vars file with definition of environment variables and run the following command. See [Agent variables](/docs/central/connect-api-manager/agent-variables/) for a reference to variable description.
+
+     ```shell
+     cd /home/APIC-agents
+     ./traceability_agent --envFile ./env_vars
+     ```
 6. The Traceability Agent parses through the files based on the `event-file` path and pattern provided. Depending on the data found, the agent pushes it to AMPLIFY Central.
 7. Go to AMPLIFY Central and open the API Observer tab to verify that the agent is working. You should see the monitoring data for the APIs discovered earlier. If you don’t see any data, then invoke a few different API methods in the exposed API.
 8. Click on any of the transactions to see the details. You will see the lifecycle of an API call, such as time taken / request and response headers / etc.
@@ -292,7 +325,7 @@ APIGATEWAY_AUTH_PASSWORD=<PASSWORD>
 
 # AMPLIFY connectivity
 CENTRAL_ORGANIZATIONID=<ORGANIZATIONID>
-CENTRAL_TEAMID=<TEAMID>
+CENTRAL_TEAM=<THE TEAM NAME>
 CENTRAL_AUTH_CLIENTID=<CLIENTID, ie. DOSA_12345...>
 CENTRAL_ENVIRONMENT=<Environment>
 ```
@@ -316,7 +349,7 @@ CENTRAL_ENVIRONMENT=<Environment>
    docker run --env-file ./env_vars -v <pwd>/keys:/keys -v <pwd>/events:/events axway-docker-public-registry.bintray.io/agent/v7-traceability-agent:latest
    ```
 
-   * See [Create and start API Gateway Docker container](/docs/apim_installation/apigw_containers/docker_script_gwimage/index.html#mount-volumes-to-persist-logs-outside-the-api-gateway-container) for more  information regarding the persistent API Gateway trace and event logs to a directory on your host machine.
+   * See [Create and start API Gateway Docker container](/docs/apim_installation/apigw_containers/docker_script_gwimage/#mount-volumes-to-persist-logs-outside-the-api-gateway-container/) for more  information regarding the persistent API Gateway trace and event logs to a directory on your host machine.
    * Run the following health check command to ensure the agent is up and running:
 
    ```shell
@@ -335,14 +368,11 @@ CENTRAL_ENVIRONMENT=<Environment>
    * Save the API and publish.  Once published, the Discovery Agent attempts to match the polling criteria. If it matches, it publishes it to the AMPLIFY Central Catalog and Environments.
    * Once the API is published to the catalog, a reference value is generated by AMPLIFY Central and sent back to the API Manager (`APIC_ID`).  If you want to see that field or customize it, refer to **Add a custom property to APIs** in [Customize API Manager](/docs/apim_administration/apimgr_admin/api_mgmt_custom/#customize-api-manager-data) documentation.
 
-### Custom fields
+### Custom field for subscription identifier
 
-Two custom fields are used to keep Central information on the API Manager:
+The Discovery Agent uses a custom field in the application's resource on API Manager to store identifiers for Central subscriptions. The default value for the custom field name is `subscriptions` and is not visible in the API Manager UI, as it is a specific configuration. This field helps the Discovery Agent to know if AMPLIFY Central subscriptions are used for particular API/application combinations. Each time an AMPLIFY Central subscription succeeds, the subscription identifier is stored in the field value of the corresponding API Manager application used to initiate the subscription. When the subscription is removed from AMPLIFY Central, the corresponding subscription identifier is removed in the corresponding API Manager application.
 
-* asset identifier: custom field at the API level. The default value is `apicId` and is not visible in API Manager UI as it is a specific configuration. This field helps the discovery agent to know which API is already discovered and which is not. This field store the AMPLIFY Central identifier for the front-end proxy in API Manager. Removing the field value will force the discovery agent to re-discover the API.
-* subscription identifier: custom field at the application level. The default value is `subscriptions` and is not visible in API Manager UI as it is a specific configuration. This fields helps the discovery agent to know if some AMPLIFY Central subscription are used for a particular API/application combination. Each time an AMPLIFY Central subscription succeed, the subscription identifier is kept in the field value of the corresponding API Manager application used to initiate the subscription. On the opposite, when the subscription is removed from AMPLIFY Central, the corresponding subscription identifier is removed in the corresponding API Manager application.
-
-In order to visualize those fields in API Manager UI, you need to update the file `app.config` located in `<INSTALL-DIR>/apigateway/webapps/apiportal/vordel/apiportal/app` with the following:
+In order to visualize those fields in API Manager UI, update the file `app.config` located in `<INSTALL-DIR>/apigateway/webapps/apiportal/vordel/apiportal/app` with the following:
 
 ```json
     customPropertiesConfig: {
@@ -358,18 +388,11 @@ In order to visualize those fields in API Manager UI, you need to update the fil
                      label: 'Amplify Central subscription ID',
                      disabled:true
              }
-        },
-        api: {
-            // custom properties...
-              apicId: {
-                     label: 'AMPLIFY Central identifier'
-            }
-
         }
     },
 ```
 
-You can also change the properties values (`apicId`, `subscriptions`) to suit your custom fields pattern. If you do so, be sure you update the agent configuration files accordingly (`proxyApicIDField` and `subscriptionApplicationField`). `apicId` should be editable as it could help to re-discover an API in case of issue by simply removing its value.
+You can also change the property value (`subscriptions`) to suit your custom fields pattern. If you do so, be sure you update the agent configuration files accordingly (`subscriptionApplicationField`).
 
 ### Subscriptions - Manage client applications on APIManager for subscription process
 

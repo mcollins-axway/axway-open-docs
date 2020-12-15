@@ -1,11 +1,12 @@
 ---
 title: Additional customizations
 linkTitle: Additional customizations
-weight: 7
+weight: 50
 date: 2019-07-30T00:00:00.000Z
 description: Customize other features of your API Portal, such as sign up,
   login, and application settings.
 ---
+
 ## Add reCaptcha to sign up
 
 You can customize your sign up functionality by enabling reCaptcha
@@ -135,22 +136,6 @@ To change the settings:
 
 ![Customize application settings](/Images/APIPortal/jai_customize_apps.png)
 
-## Customize application sharing settings
-
-You can hide the list of users when sharing an application in API Portal. When this setting is enabled, an application developer cannot see the full list of users from the same organization when sharing an application. This ensures that the privacy of your other users is protected, and their contact details (for example, email address) are not revealed.
-
-To change the settings:
-
-1. In JAI, click click **Components > Main Menu**.
-2. Click **API Portal > Additional Settings**.
-3. In the **Enable user listing** field, click **No** to hide the user listing, or click **Yes** to show it. The default is to hide the user listing.
-
-When the **Enable user listing** setting is set to **Yes**, an application developer can see the details (user name and email) of all other users that an application is shared with, and to share the application with another user they can select the user from a list of all users in the organization.
-
-When the setting is set to **No**, an application developer cannot see the details of all other users the application is shared with, but can see those users with whom they shared the application. To share the application with another user they must enter an email address. An error is displayed if the email does not belong to the organization.
-
-When the setting is set to **Yes** or **No** an organization administrator can see all the users that an application is shared with, regardless of who shared it with them.
-
 ## Customize monitoring
 
 To enable your API consumers to view monitoring information for their APIs and application in API Portal, you must ensure that you have enabled monitoring in the connected API Manager. For details, see [Monitor APIs and applications in API Manager](/docs/apim_administration/apimgr_admin/api_mgmt_monitor/).
@@ -212,7 +197,7 @@ API Portal supports custom properties for the following entities:
 
 * **Application**: You can view and edit the values of the custom properties defined for applications.
 * **User**: You can view and edit the values of the custom properties defined for users.
-* **API**: You can only view the values of the custom properties defined for APIs. The values of the custom properties of the SOAP APIs are not displayed on the API Details page.
+* **API**: You can only view the values of the custom properties defined for APIs.
 
 API Portal does not support custom properties defined for organizations.
 

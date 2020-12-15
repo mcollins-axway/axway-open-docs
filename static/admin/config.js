@@ -265,6 +265,18 @@ const collections = [{
   label_singular: 'page in APIG extend section',
   description: 'All pages relating to extending API Gateway.',
 }, {
+  ...docsDefaults('apim_yamles', 'apim_yamles'),
+  name: 'apim_yamles',
+  label: 'YAML configuration',
+  label_singular: 'page in YAML configuration section',
+  description: 'All pages relating to YAML configuration.',
+}, {
+  ...docsDefaults('apim_yamles/apim_yamles_references', 'apim_yamles'),
+  name: 'apim_yamles_references',
+  label: 'YAML Configuration Reference',
+  label_singular: 'page in YAML configuration ref section',
+  description: 'All reference pages for YAML configuration.',
+}, {
   ...docsDefaults('apim_reference', 'APIGatewayDeveloperGuide'),
   name: 'apim_reference',
   label: 'Reference',
@@ -303,6 +315,13 @@ const collections = [{
   label: 'Mesh management documentation',
   label_singular: 'page in Mesh management',
   description: 'All pages relating to Mesh management.',
+  format: 'frontmatter',
+}, {
+  ...docsDefaults('central/amplify_relnotes', 'central/amplify_relnotes'),
+  name: 'amplify_relnotes',
+  label: 'AMPLIFY Release notes',
+  label_singular: 'page in AMPLIFY Release notes section',
+  description: 'Release notes for AMPLIFY Central and AMPLIFY Catalog',
   format: 'frontmatter',
 }, {
   ...docsDefaults('central/connect-api-manager', 'central/connect-api-manager'),
@@ -362,7 +381,7 @@ const collections = [{
   folder: 'content/en/blog/friends',
 }];
 
-const cms_branch = window.location.hostname.includes('develop') ? 'develop' : 'master';
+const cms_branch = window.location.hostname.includes('developjan21') ? 'developjan21' : 'master';
 
 const config = {
   backend: {

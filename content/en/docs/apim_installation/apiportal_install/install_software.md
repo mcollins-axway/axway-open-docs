@@ -47,9 +47,9 @@ To install API Portal:
    sudo setsebool -P httpd_can_network_connect 1
    sudo setsebool -P httpd_can_network_connect_db 1
    sudo setsebool -P httpd_unified 1
-   sudo chcon -R -t httpd_sys_content_t /opt/axway/apiportal/htdoc/
-   sudo semanage fcontext -a -t httpd_sys_rw_content_t '/opt/axway/apiportal/htdoc(/.*)?'
-   sudo restorecon -R -v '/opt/axway/apiportal/htdoc'
+   sudo chcon -R -t httpd_sys_content_t <APIPORTAL_INSTALL_DIR>
+   sudo semanage fcontext -a -t httpd_sys_rw_content_t '<APIPORTAL_INSTALL_DIR>(/.*)?'
+   sudo restorecon -R -v '<APIPORTAL_INSTALL_DIR>'
    ```
 
 Watch this video to learn more about installing API Portal using a non-root user:
@@ -64,19 +64,20 @@ This section describes the options to configure API Portal with HTTP or HTTPS.
 
 If you choose not to configure SSL/TLS, API Portal runs with plain HTTP.
 
-{{< alert title="Caution" color="warning" >}}This option increases the risk of security vulnerabilities. {{< /alert >}}
-
 #### Run API Portal with HTTPS
 
 If you choose to configure SSL/TLS, API Portal runs with HTTPS and you can choose one of the following options:
 
 1. Custom certificate:
 
-   * The installation prompts you for the path to a certificate and private key.
-   * It checks whether the private key is generated with a passphrase. If it is, the script prompts you for the passphrase and a path to store it. The last segment of the passphrase path is the file name. For example, if you enter `/home/passphrase`, the passphrase is stored in a file with the name `passphrase` in the `/home` directory.
-   * It prompts you for the host name.
-2. API Portal is configured to run with HTTPS using the provided certificate and key.
-3. Self-signed certificate: The installation generates a self-signed certificate and API Portal is configured to run with HTTPS using the self signed certificate.
+   * The installation prompts you for the path to a certificate and private key, and for the host name.
+   * API Portal is configured to run with HTTPS using the provided certificate and key.
+   * The installer does not make any SSL-related Apache configuration. You might need to change the [SSLPassPhraseDialog](https://httpd.apache.org/docs/current/mod/mod_ssl.html#sslpassphrasedialog) setting.
+2. Self-signed certificate:
+
+   * The installation generates a self-signed certificate and API Portal is configured to run with HTTPS using the self signed certificate.
+
+{{< alert title="Caution" color="warning" >}}Both HTTP and HTTPS with self-signed certificate increase the risk of security vulnerabilities, so they should not be used in production environments.  {{< /alert >}}
 
 To complete the HTTP/HTTPS configuration, you must restart Apache. The installation script tries to detect the Apache service and prompts you to restart it. If the script cannot detect Apache you must manually restart Apache.
 

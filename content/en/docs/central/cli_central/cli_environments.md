@@ -9,7 +9,7 @@ description: Learn how your DevOps process can use AMPLIFY Central CLI to build
 
 ## Before you start
 
-* You will need to [authorize your DevOps service to use the DevOps API](/docs/central/cli_getstarted/)
+* You must [authorize your DevOps service to use the DevOps API](/docs/central/cli_central/cli_install/#authorize-your-cli-to-use-the-amplify-central-apis)
 * Verify the @axway/amplify-central-cli version is at minimum 0.1.3.
 
 ## Objectives
@@ -43,7 +43,7 @@ Create an environment by providing the environment name and the output in JSON f
 Create an environment by providing the path to a valid .yaml, .yml, or .json file that defines a specific resource:
 
  ```
- amplify central create environment -f <filepath>
+ amplify central create -f <filepath>
  ```
 
 Create an environment by providing the environment name (`env3`) and a path to a valid .yaml, .yml, or .json file that defines a specific resource:

@@ -27,7 +27,7 @@ The destination for:
 
 ### Discovery Agent
 
-Use variable `apimanager.filter` to select which API should be sent to Axway AMPLIFY platform. Only the matching APIs are transferred to Axway AMPLIFY platform. See [Discover APIs](docs/central/connect-api-manager/filtering-apis-to-be-discovered/). The Discovery Agent sends the following information to the Axway AMPLIFY platform:
+Use variable `apimanager.filter` to select which API should be sent to Axway AMPLIFY platform. Only the matching APIs are transferred to Axway AMPLIFY platform. See [Discover APIs](/docs/central/connect-api-manager/filtering-apis-to-be-discovered/). The Discovery Agent sends the following information to the Axway AMPLIFY platform:
 
 * API definition using Swagger or WSDL depending on the API type (REST vs SOAP)
 * API documentation
@@ -47,7 +47,7 @@ In order to submit details of the transaction, the Traceability Agent reads the 
 
 * Request/response headers from each API call  
 
-{{< alert title="Note" color="primary" >}}You can disable sending the headers by using the following property:  `output.traceability.agent.apigateway.getHeaders: false.` By default, the property is set to true. If collecting the headers is disabled, they will not be visible in Axway AMPLIFY platform Observability module, as the Traceability Agent will send only the transaction summary data (status / url / duration / timestamp / transaction service called) to the platform.{{< /alert >}}
+{{< alert title="Note" color="primary" >}}You can disable sending the headers by using the following property:  `traceability_agent.apigateway.getHeaders: false.` By default, the property is set to true. If collecting the headers is disabled, they will not be visible in Axway AMPLIFY platform Observability module, as the Traceability Agent will send only the transaction summary data (status / url / duration / timestamp / transaction service called) to the platform.{{< /alert >}}
 
 Once the information is extracted it is sent to the Axway platform using the TLS encryption.
 
@@ -59,12 +59,16 @@ Open the following ports so that agents can communicate to the AMPLIFY platform:
 
 **Outbound**:
 
-| Host                                      | Port | Protocol | Data                               |
-| ----------------------------------------- | ---- | -------- | ---------------------------------- |
-| apicentral.axway.com                      | 443  | HTTPS    | API definitions, Subscription info |
-| login.axway.com                           | 443  | HTTPS    | Authentication                     |
-| ingestion-lumberjack.datasearch.axway.com | 453  | TCP      | API event data                     |
-| platform.axway.com                        | 443  | HTTPS    | Platform user info                 |
+| Region | Host                                                                                    | Port               | Protocol     | Data                               |
+|--------|-----------------------------------------------------------------------------------------|--------------------|--------------|------------------------------------|
+| US/EU  | platform.axway.com                                                                      | 443                | HTTPS        | Platform user info                 |
+| US/EU  | login.axway.com                                                                         | 443                | HTTPS        | Authentication                     |
+| US     | apicentral.axway.com                                                                    | 443                | HTTPS        | API definitions, Subscription info |
+| EU     | central.eu-fr.axway.com                                                                 | 443                | HTTPS        | API definitions, Subscription info |
+| US     | ingestion-lumberjack.datasearch.axway.com or ingestion.datasearch.axway.com             | 453 or 443         | TCP or HTTPS | API event data                     |
+| EU     | ingestion-lumberjack.visibility.eu-fr.axway.com or ingestion.visibility.eu-fr.axway.com | 453 or 443         | TCP or HTTPS | API event data                     |
+
+Note: _Region_ column is representing the region where your AMPLIFY organization is deployed. EU means deployed in European data center and US meaning deployed in US data center. Be sure to use the corresponding _Host_/_Port_ for your agents to operate correctly.
 
 Other ports which may need to be opened so that the Agent may monitor API Gateway / Manager are:
 
@@ -73,7 +77,7 @@ Other ports which may need to be opened so that the Agent may monitor API Gatewa
 | Host             | Port           | Protocol | Data                                                                                                   |
 | ---------------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------ |
 | API Manager Host | 8075 (default) | HTTPS    | API Discovery                                                                                          |
-| API Gateway Host | 8090 (default) | HTTPS    | API Transaction Header data (see [APIGATEWAY GETHEADERS](/docs/central/connect-api-manager/traceability-agent-variables/) |
+| API Gateway Host | 8090 (default) | HTTPS    | API Transaction Header data (see [APIGATEWAY GETHEADERS](/docs/central/connect-api-manager/agent-variables/#specific-variables-for-traceability-agent) |
 
 **Inbound (used for the agent status server)**:
 
@@ -83,7 +87,7 @@ Other ports which may need to be opened so that the Agent may monitor API Gatewa
 
 ## Subscription notifications
 
-SMTP and/or a webhook URL can be set up to send subscription notifications on both subscribe and unsubscribe actions.  You can find the configuration to set up the SMTP or webhook URL here [Deploy your agents](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-api-manager/deploy-your-agents/index.html)
+SMTP and/or a webhook URL can be set up to send subscription notifications on both subscribe and unsubscribe actions.  You can find the configuration to set up the SMTP or webhook URL at [Deploy your agents](/docs/central/connect-api-manager/deploy-your-agents/).
 
 ## Using proxies
 
@@ -95,7 +99,7 @@ Use a HTTP/HTTPS Proxy for communication to the AMPLIFY Platform.  This configur
 
 ### SOCKS5 Proxy
 
-Use a SOCKS5 Proxy for communication to the AMPLIFY Platform when sending API Traffic Events.  This configuration is set only for [Traceability Agents](/docs/central/connect-api-manager/agent-variables/).
+Use a SOCKS5 Proxy for communication to the AMPLIFY Platform when sending API Traffic Events.  This configuration is set only for [Traceability Agents](/docs/central/connect-api-manager/agent-variables/#specific-variables-for-traceability-agent).
 
 ### Proxy authentication
 
@@ -117,7 +121,15 @@ curl -s -o /dev/null -w "%{http_code}"  https://login.axway.com
 
 A return of **"200"** validates the connection was established.
 
-**Connecting to AMPLIFY Central Event Traffic host:**
+**Connecting to AMPLIFY Central Event Traffic host, HTTPS:**
+
+```shell
+curl -s -o /dev/null -w "%{http_code}" https://ingestion.datasearch.axway.com
+```
+
+A return of **"200"** validates the connection was established.
+
+**Connecting to AMPLIFY Central Event Traffic host, Lumberjack:**
 
 ```shell
 curl ingestion-lumberjack.datasearch.axway.com:453
@@ -139,7 +151,15 @@ curl -x {{proxy_host}}:{{proxy_port}} -s -o /dev/null -w "%{http_code}"  https:/
 
 A return of **"200"** validates the connection was established.
 
-**Connecting to AMPLIFY Central Event Traffic host:**
+**Connecting to AMPLIFY Central Event Traffic host, HTTPS:**
+
+```shell
+curl -x {{proxy_host}}:{{proxy_port}} -s -o /dev/null -w "%{http_code}" https://ingestion.datasearch.axway.com
+```
+
+A return of **"200"** validates the connection was established.
+
+**Connecting to AMPLIFY Central Event Traffic host, Lumberjack:**
 
 ```shell
 curl -x socks5://{{proxy_host}}:{{proxy_port}} ingestion-lumberjack.datasearch.axway.com:453

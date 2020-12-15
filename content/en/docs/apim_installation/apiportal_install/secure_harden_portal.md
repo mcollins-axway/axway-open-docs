@@ -71,22 +71,19 @@ To counter a session fixation vulnerability in Joomla!, it is recommended that y
 
 ## Encrypt database password
 
-If you did not choose to encrypt your database password during the installation process, you can use the `apiportal_db_pass_encryption.sh` script, available both from API Portal installation and upgrade packages, to encrypt the password at any time.
+If you did not choose to encrypt your database password during the installation process, you can use the `apiportal_db_pass_encryption.sh` script to encrypt the password at any time. The script is available both from API Portal installation and upgrade packages.
 
-1. Make the script executable:
+To encrypt your database password, run:
 
-   ```
-   # chmod +x apiportal_db_pass_encryption.sh
-   ```
-2. Execute the script
+```
+# sh apiportal_db_pass_encryption.sh
+```
 
-   ```
-   # sh apiportal_db_pass_encryption.sh
-   ```
+You will be prompted to enter a passphrase and your database password.
 
-    When you execute the script, you are prompted to enter a passphrase and your database password. The script uses the passphrase to encrypt the database password, which is now stored encrypted in the `<API_Portal_install_path>/configuration.php` file, and to decrypt the database password on each connection request.
+The script uses the passphrase to encrypt the database password, which is now stored encrypted in the `<API_Portal_install_path>/configuration.php` file, and to decrypt the database password on each connection request.
 
-    Only the password is decrypted on each connection request, not the whole payload, so no significant performance impact is expected.
+Only the password is decrypted on each connection request, not the whole payload, so no significant performance impact is expected.
 
 {{< alert title="Note" color="primary" >}}This option cannot be used in combination with [database secure connection](#disable-tls-1-0-and-tls-1-1-on-apache).{{< /alert >}}
 
@@ -123,14 +120,6 @@ If you have APIs that are virtualized and published on a host other than an API 
 3. Click **Save**.
 
 If you do not add your trusted API hosts to this field, all requests to those hosts will be rejected by API Portal.
-
-## Change the location of API Portal log files
-
-By default, API Portal saves the Apache log files in the `htdocs` directory. For increased security, you can configure a different location to save the log files:
-
-1. In the JAI, click **System > Global Configuration**.
-2. On the **System** tab, enter the new location in the **Path to Log Folder** field. Apache must have permission to write to the new location.
-3. Click **Save**.
 
 ## Configure Apache
 
@@ -231,6 +220,53 @@ API Portal users should only have access to the databases that they need to run.
 8. Select **Users** from the left navigation bar.
 9. Click the **User Options** tab and set **Allow User Registration** to `No`.
 
+## Enable two-factor authentication
+
+Joomla! two-factor authentication adds an extra layer of security to your portal by asking the user for a single-use secret code.
+
+After you install API Portal with Joomla! version 3.2 or higher, Joomla! backend shows a notice for you to check the post-installation messages. From the post-Installation message screen, click **Enable Two-Factor Authentication** to enable two-factor authentication on your API Portal.
+
+To configure the two-factor authentication:
+
+1. In JAI, click **User Manager** > **Edit profile**.
+2. Click **Two-Factor Authentication** tab.
+3. Select an option from the **Authentication Method** drop-down list.
+
+To disable an option, go to **Plugin Manager**, find the two-factor plugin and disable those that you do not want to use.
+
+After you configure the two-factor authentication, the additional **Security Key** field is shown on API Portal login page for all users. Users can modify their settings in their profile page.
+
+### Authentication methods
+
+The following options are available from the **Authentication method** list:
+
+* [Google Authenticator](https://en.wikipedia.org/wiki/Google_Authenticator): A software-based application provided by Google, which allows you to generate a six-digit security password that changes every 30 seconds. To use this option, you must download Google Authenticator on a smartphone, and configure it for each site which will be using it. You can enable two-factor authentication for the front-end, back-end, or for both. You can configure this in the **Two-Factor Authentication – Google Authenticator** plug-in.
+* Yubikey: Allows you to use a Yubikey secure hardware token for two-factor authentication. In addition to the username and password, it also requires you to insert your Yubikey into the USB port of your computer (Click the **Secret Key** area of the site's login area and touch the **Yubikey's gold disk**). If you have an NFC-equipped Android smartphone you can just hold a compatible Yubikey token (Yubikey Neo) close to the NFC reader to copy the secret code to the device's clipboard. The secret code generated by your Yubikey is unique to your device, and it is constantly changing. You can enable two-factor authentication for the front-end, back-end, or for both. You can configure this in the plugin **Two-Factor Authentication – Yubikey** plug-in.
+
+## Enable scanning of uploaded files
+
+API Portal provides [ClamAV](https://www.clamav.net/documents/clam-antivirus-user-manual) anti-virus engine for scanning uploaded files for malicious content. ClamAV comes with *freshclam*, a tool that periodically checks for new database releases and keeps your database up to date.
+
+Before enabling the scanning feature, you must install two packages in your machine:
+
+* **clamav**: End-user tool for the Clam Antivirus scanner
+* **clamd**: The Clam AntiVirus Daemon
+
+Both packages are available in EPEL.
+
+After installing the packages, you must start *ClamAV daemon*, the daemon that API Portal uses to scan the files.
+
+After starting the daemon, you can enable scanning of uploaded files:
+
+1. In JAI, click **Components** > **API Portal** > **Additional settings**.
+2. Enable **Scan uploaded files** toggle.
+3. Enter the ClamAV host and port.
+4. Save the configuration.
+
+If the configuration is incorrect or ClamAV daemon is not running, an error message will be shown.
+
+{{< alert title="Note" color="primary" >}}If `PrivateTmp` flag is set to true for the Apache service and `/tmp` is set for `upload_tmp_dir` PHP configuration, ClamAV will not be able to scan uploaded files. In that case, you can change the value of `upload_tmp_dir` to `APIPORTAL_INSTALL_DIR/tmp`.{{< /alert >}}
+
 ## Do not allow web browsers to save login and password
 
 When you log in to Joomla! Administrator Interface (JAI) do not allow the web browser to save or remember your login and password.
@@ -274,31 +310,28 @@ TraceEnable off
 AllowMethods GET POST PUT
 ```
 
+## Prevent host header attack
+
+To prevent host header attacks, we recommend to whitelist `Host` and `X-Forwarded-Host` headers. When the values of the headers do not match the whitelist, the request is redirected to API Portal homepage. To whitelist headers, add the following configuration to your `.htaccess` or virtual host file. (Replace the placeholder URL with your domain):
+
+```
+RewriteCond %{HTTP_HOST} !^([a-zA-Z0-9-_]{1,20}.){0,3}APIPORTAL_DOMAIN$
+RewriteRule ^(.*)$ https://APIPORTAL_YOUR_DOMAIN/ [R=301,L]
+
+RewriteCond %{HTTP:X-Forwarded-Host} !^$
+RewriteCond %{HTTP:X-Forwarded-Host} !^([a-zA-Z0-9-_]{1,20}.){0,3}APIPORTAL_DOMAIN$
+RRewriteRule ^(.*)$ https://APIPORTAL_YOUR_DOMAIN/ [R=301,L]
+```
+
 ## Protect the integrity of the logging system
 
-You must ensure that security logs are protected against tampering, repudiation, and unauthorized access or modification. Store logs in a secure and tamper-proof location so that the logs can be used as evidence, for example, in any form of legal proceedings.
-
-To protect the integrity of the application generated logs:
-
-* Store logs on write-once media
-* Forward a copy of the logs to a centralized security information and event management (SIEM) system
-* Generate message digests for each log file
-
-This approach ensures that you can detect and prevent tampering.
-
-API Portal logs are located in the `logs` folder in the API Portal root directory.
+To protect the integrity of the application generated logs, see [these security best practices for storing log files](/docs/apim_administration/apiportal_admin/apip_logging/).
 
 ## Utilize synchronized time source
 
 We recommend that you synchronize API Portal server with an internal or external Network Time Protocol (NTP) server.
 
 It is important to use unified and synchronized time source throughout the environment to correlate logs and data from different internal and external systems and preserve forensic quality of the logs. Accurate time is also essential when identifying and analyzing application events, including attacks.
-
-## Develop a log retention policy and archival procedures
-
-We recommend that you develop a log retention policy to identify storage requirements for device logs, and appropriate archival procedures to ensure that the audit logs are available for a security response in the case of an incident or investigation.
-
-The audit logs must be collected for the last 30 days in easily accessible storage media. Older logs should be archived in a protected storage and should be accessible in the future as required for incidents or investigations.
 
 ## Detect and prevent the usage of automated tools or unusual behavior
 
@@ -313,7 +346,7 @@ These are some general recommendations:
 * Google Analytics - has abnormal detection features. Very commonly used and reliable tool. For more information, see [Google Analytics Anomaly Detection](https://support.google.com/analytics/answer/7507748?hl=en).
 * Log analysis tools - can be installed to act upon different logs. For example, see [Loggly Anomoly Detection](https://www.loggly.com/docs/anomaly-detection/).
 
-## Define a restrictive Content Security Policy
+## Define a restrictive content security policy
 
 The HTTP Content Security Policy ([CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)) response header instructs compliant browsers on how they may interact with external sites while in the current context. This enables the server to control interaction with code and content from third-parties, mitigating some client-side code injection attacks. The policy allows the server to specify what connections are permitted for each type of resource (scripts, styles, fonts, and so on).
 
@@ -329,8 +362,9 @@ You must include your Data Protection Officer (DPO) or Legal department to defin
 
 ## Permanently delete unnecessary data
 
-When the retention periods expire you have to ensure that all of the data which is no longer needed has been deleted. This may require automatic identification of the latest activities and a data deletion functionality or manual work.
+When the retention periods expire you must ensure that all of the data which is no longer needed is deleted. This may require automatic identification of the latest activities and a data deletion functionality or manual work.
 
 ## Where to go next
 
-For more information on the security features of API Management products and best practices for strengthening their security, see the [API Management Security Guide](/docs/apimgmt_security/).
+* For more information on the security features of API Management products and best practices for strengthening their security, see the [API Management Security Guide](/docs/apimgmt_security/).
+* For privacy and personal data security recommendations, see [Manage privacy and personal data](/docs/apim_administration/apiportal_admin/manage_privacy_personal_data).
