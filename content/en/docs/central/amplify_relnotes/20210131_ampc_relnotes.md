@@ -29,7 +29,7 @@ The AMPLIFY Central WebUI includes the following enhancements:
 
 AMPLIFY Central mesh governance enables you to govern and manage your APIs, public and private services, along with the hybrid environments where they are located.
 
-Mesh governance includes the following enhancements: 
+Mesh governance includes the following enhancements:
 
 * ADD ENHANCEMENTS HERE
 
