@@ -3,7 +3,7 @@ title: Build and manage API services in your environments
 linkTitle: Build and manage API services in your environments
 weight: 110
 date: 2020-06-10T00:00:00.000Z
-description: Learn how your DevOps process can use AMPLIFY Central CLI to build and manage API services in your environments.
+description: Learn how your DevOps process can use amplify Central CLI to build and manage API services in your environments.
 ---
 
 ## Before you start
@@ -13,7 +13,7 @@ description: Learn how your DevOps process can use AMPLIFY Central CLI to build 
 
 ## Objectives
 
-Learn how to create and manage your API services to represent your distributed cloud and on-premise environments using the AMPLIFY Central CLI.
+Learn how to create and manage your API services to represent your distributed cloud and on-premise environments using the amplify Central CLI.
 
 * Create a new API service in an environment
 * Retrieve a list of all API services in an environment
@@ -109,4 +109,4 @@ amplify central delete apiservice apisvc1 -scope env1 --wait
 
 ## Review
 
-You have learned how to use the AMPLIFY Central CLI to build and manage API services in your environments.
+You have learned how to use the amplify Central CLI to build and manage API services in your environments.

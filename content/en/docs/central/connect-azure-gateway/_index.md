@@ -3,41 +3,41 @@ title: Connect Azure Gateway
 linkTitle: Connect Azure Gateway
 weight: 145
 date: 2021-01-07
-description: Understand why you would connect Azure API Management Services to AMPLIFY
-  Central. Learn how you can publish to the AMPLIFY Catalog from your API
+description: Understand why you would connect Azure API Management Services to amplify
+  Central. Learn how you can publish to the amplify Catalog from your API
   Management Services in order to obtain a global view of your APIs and present
   this Catalog to your consumers. Learn how you can collect the traffic of all
-  your gateways and see it in a single place in AMPLIFY Central Observability.
+  your gateways and see it in a single place in amplify Central Observability.
 ---
 
 ## What is Azure API Management Service connected?
 
-Connect your Azure Management Services to AMPLIFY Central by using two agents: Discovery and Traceability. These two agents will help you to represent and expose your API Management eco-system in AMPLIFY Central:
+Connect your Azure Management Services to amplify Central by using two agents: Discovery and Traceability. These two agents will help you to represent and expose your API Management eco-system in amplify Central:
 
-* Create an environment in AMPLIFY Central that represent your actual API Management eco-system.
-* Detect a published API using the Discovery Agent. The Discovery Agent discovers the API from API Manager and makes it available in AMPLIFY Central. An API Service in Central is created to reference the API from API Management Service and then you can optionally tell the agent to publish it to the AMPLIFY Catalog to allow your consumer to discover it.
+* Create an environment in amplify Central that represent your actual API Management eco-system.
+* Detect a published API using the Discovery Agent. The Discovery Agent discovers the API from API Manager and makes it available in amplify Central. An API Service in Central is created to reference the API from API Management Service and then you can optionally tell the agent to publish it to the amplify Catalog to allow your consumer to discover it.
 * Manage consumer subscription using the Discovery Agent. When a consumer subscribes / unsubscribes to a Catalog asset, the Discovery Agent keeps track of the changes and maintains the API Management system accordingly.
-* Filter the Azure Gateway logs using the Traceability Agent. The Traceability Agent uses the discovered API to filter Azure Gateway events to extract the transaction information and send it to the AMPLIFY platform Observability module.
+* Filter the Azure Gateway logs using the Traceability Agent. The Traceability Agent uses the discovered API to filter Azure Gateway events to extract the transaction information and send it to the amplify platform Observability module.
 
 ### Discovery Agent
 
-The Discovery Agent is used to discover new published APIs. The Discovery Agent pushes both REST and SOAP API definitions to AMPLIFY Central.
+The Discovery Agent is used to discover new published APIs. The Discovery Agent pushes both REST and SOAP API definitions to amplify Central.
 
-The related APIs are published to AMPLIFY Central either as an API Service in environment or an API Service in environment and optionally as Catalog item (default behavior).
+The related APIs are published to amplify Central either as an API Service in environment or an API Service in environment and optionally as Catalog item (default behavior).
 
 ![Service Discovery](/Images/central/connect-azure-gateway/discoveryagent.png)
 
 ### Traceability Agent
 
-The Traceability Agent sends log information about APIs that have been discovered and published to AMPLIFY Central.
+The Traceability Agent sends log information about APIs that have been discovered and published to amplify Central.
 
 ![Service Traceability](/Images/central/connect-azure-gateway/traceabilityagent.png)
 
 ## Prerequisites
 
-* An Axway AMPLIFY Central subscription in the AMPLIFY™ platform
-* An AMPLIFY Central Service Account
-* An AMPLIFY Central environment
+* An Axway amplify Central subscription in the amplify™ platform
+* An amplify Central Service Account
+* An amplify Central environment
 * An Azure Service principal for the Discovery / Traceability agent to use Azure APIs
 
 ## System requirements
@@ -46,9 +46,9 @@ The Traceability Agent sends log information about APIs that have been discovere
 
 ## Region support
 
-AMPLIFY Central supports two regions, US (default) and EU. The data (APIs, traffic) that the agents send to AMPLIFY Central is stored in one of those regions based on the agent configuration.
+amplify Central supports two regions, US (default) and EU. The data (APIs, traffic) that the agents send to amplify Central is stored in one of those regions based on the agent configuration.
 
-Use one of the following URLs to access the AMPLIFY Central UI:
+Use one of the following URLs to access the amplify Central UI:
 
 * US: [https://apicentral.axway.com](https://apicentral.axway.com)
 * EU: [https://central.eu-fr.axway.com](https://central.eu-fr.axway.com)
@@ -59,12 +59,12 @@ Update the following variables to move data to the EU region:
 * `CENTRAL_URL`= **<https://central.eu-fr.axway.com>**
 * `TRACEABILITY_HOST`= **ingestion-lumberjack.visibility.eu-fr.axway.com:453**
 
-## Connect Azure API Management services to AMPLIFY Central
+## Connect Azure API Management services to amplify Central
 
-The following is a high-level overview of the required steps to connect Azure API Management services to AMPLIFY Central:
+The following is a high-level overview of the required steps to connect Azure API Management services to amplify Central:
 
 * Create an Azure Service principal
-* Create a service account for the agent to communicate with the AMPLIFY platform
+* Create a service account for the agent to communicate with the amplify platform
 * Create an environment to group the APIs
 * Pull the agent from Docker
 * Update the Azure agent YAML file or use an environment variable file to configure the access to Azure.
@@ -101,15 +101,15 @@ Notes:
 
 You can retrieve your subscription id with the command: `az account show --query id`
 
-### Prepare AMPLIFY Central
+### Prepare amplify Central
 
-Create a **service account** using AMPLIFY Central command: `amplify central create service-account`. This command generates a key pair (public_key.pem / private_key.pem) and associates the public key to an AMPLIFY Central Service account. The service account client ID is required for the agent configuration. Refer to AMPLIFY Central UI / Access / Service Accounts. You will also need the generated keys for starting the agents.
+Create a **service account** using amplify Central command: `amplify central create service-account`. This command generates a key pair (public_key.pem / private_key.pem) and associates the public key to an amplify Central Service account. The service account client ID is required for the agent configuration. Refer to amplify Central UI / Access / Service Accounts. You will also need the generated keys for starting the agents.
 
-Create an **environment** using the AMPLIFY Central command:  `amplify central create environment my-azure-env`. This command creates an environment object named 'my-azure-env' in AMPLIFY Central. It will become the placeholder for the discovered APIs. This environment name will be part of the agent configuration.
+Create an **environment** using the amplify Central command:  `amplify central create environment my-azure-env`. This command creates an environment object named 'my-azure-env' in amplify Central. It will become the placeholder for the discovered APIs. This environment name will be part of the agent configuration.
 
 ### Prepare agent configuration
 
-Below is the basic configuration to specify connectivity for Azure and AMPLIFY Central. Put this information into an `env_vars.env` file and adapt the values according to your configuration.
+Below is the basic configuration to specify connectivity for Azure and amplify Central. Put this information into an `env_vars.env` file and adapt the values according to your configuration.
 
 Note: It is not necessary to surround parameter values with quotes.
 
@@ -130,9 +130,9 @@ AZURE_APIMSERVICENAME=finance-loan
 #
 #API Central connectivity
 #
-# Service account to be used to connect to AMPLIFY Central
+# Service account to be used to connect to amplify Central
 CENTRAL_AUTH_CLIENTID={service account Client ID: DOSA_xxxxxxxxxxxxxxxxxxxxxxx}
-# AMPLIFY Central Organization Id (Refer to AMPLIFY UI / Organization) 
+# amplify Central Organization Id (Refer to amplify UI / Organization) 
 CENTRAL_ORGANIZATIONID=AAAAAAAAA
 # Amplify Central environment where to group discovered APIs
 CENTRAL_ENVIRONMENT=my-azure-env

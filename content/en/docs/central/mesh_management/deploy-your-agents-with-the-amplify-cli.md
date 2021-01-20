@@ -1,9 +1,9 @@
 ---
-title: Deploy your agents with AMPLIFY CLI
+title: Deploy your agents with amplify CLI
 linkTitle: Deploy your agents
 weight: 160
 date: 2020-12-0
-description: Use the AMPLIFY CLI to deploy Axway mesh agents 
+description: Use the amplify CLI to deploy Axway mesh agents 
 ---
 {{< alert title="Public beta" color="warning" >}}This is a preview of the new mesh discovery agents that run separately from the current mesh governance agents, which provide full governance of your hybrid environment. The new agents are deployed and configured from the Axway CLI, and they allow for updated visibility to the mesh discovery process.{{< /alert >}}
 
@@ -11,26 +11,26 @@ description: Use the AMPLIFY CLI to deploy Axway mesh agents
 
 Ensure you have the following tools installed:
 
-* AMPLIFY Central CLI 0.1.17 or later
+* amplify Central CLI 0.1.17 or later
 * Helm 3.2.4 or later
 * Istioctl 1.6.8
 * Kubectl 1.16 or later
 * Node.js 10.13.0 or later
 * OpenSSL 2.8.3 or later
 
-For more information about installing the CLI, see [Install AMPLIFY Central CLI](/docs/central/cli_central/cli_install/).
+For more information about installing the CLI, see [Install amplify Central CLI](/docs/central/cli_central/cli_install/).
 
-## Log in to the AMPLIFY Central CLI
+## Log in to the amplify Central CLI
 
-Run the following command to log into the Central CLI with your AMPLIFY Platform credentials:
+Run the following command to log into the Central CLI with your amplify Platform credentials:
 
 ```shell
 amplify auth login --client-id apicentral
 ```
 
-A dialog box is shown. Enter your valid credentials (email address and password), and after the authorization successful message is displayed, go back to the AMPLIFY CLI.
+A dialog box is shown. Enter your valid credentials (email address and password), and after the authorization successful message is displayed, go back to the amplify CLI.
 
-If you are a member of multiple AMPLIFY organizations, select an organization and continue.
+If you are a member of multiple amplify organizations, select an organization and continue.
 
 ## Install Axway mesh agents
 
@@ -79,7 +79,7 @@ If you are a member of multiple AMPLIFY organizations, select an organization an
 
 7. Choose if you would like to generate a self-signed certificate or provide your own certificate.
 
-    If you choose to generate a certificate, the AMPLIFY CLI will use OpenSSL to create the private key and the certificate, which will be placed in the current directory where you are running the AMPLIFY CLI. If you choose to provide an existing certificate, you will be prompted with the file path to the private key and the certificate.
+    If you choose to generate a certificate, the amplify CLI will use OpenSSL to create the private key and the certificate, which will be placed in the current directory where you are running the amplify CLI. If you choose to provide an existing certificate, you will be prompted with the file path to the private key and the certificate.
 
 ### Generate a self-signed certificate
 
@@ -103,7 +103,7 @@ Created secret/gateway-cert in the istio-system namespace.
 
 To provide your own certificate, select `Provide certificate` and press `enter`.
 
-The next prompt asks for the file path to the private key. The path is relative to the directory where you invoked the AMPLIFY CLI command from. If your certificate and key are stored in another directory from where you are running the CLI, then you must provide the full path to the files.
+The next prompt asks for the file path to the private key. The path is relative to the directory where you invoked the amplify CLI command from. If your certificate and key are stored in another directory from where you are running the CLI, then you must provide the full path to the files.
 
 After you provide the path for both the private key and the certificate, the CLI creates the secret in the `istio-system` namespace.
 
@@ -144,9 +144,9 @@ The following prompts are related to the details about the mesh agents.
     Enter a new namespace name: (apic-control)
     ```
 
-After the namespace is created, you are asked for the DevOps Service Account (DOSA) to use, so the agents can authenticate with AMPLIFY Central. You can create a new DOSA account or select an existing one.
+After the namespace is created, you are asked for the DevOps Service Account (DOSA) to use, so the agents can authenticate with amplify Central. You can create a new DOSA account or select an existing one.
 
-{{< alert title="Note">}} If you choose to use an existing DOSA account, you must provide the same public and private keys that were used to create the DOSA account you have selected. Failure to do so will cause the agents to fail to authenticate with AMPLIFY Central.{{< /alert >}}
+{{< alert title="Note">}} If you choose to use an existing DOSA account, you must provide the same public and private keys that were used to create the DOSA account you have selected. Failure to do so will cause the agents to fail to authenticate with amplify Central.{{< /alert >}}
 
 ### Create a new DOSA account
 
@@ -162,7 +162,7 @@ To create a new DOSA account, follow these steps:
     ──────────────
     ```
 
-2. Enter a name for the new DOSA account name. Creating a new DOSA account will override any file named `public_key.pem` or `private_key.pem` in the directory where you invoked the AMPLIFY CLI from.
+2. Enter a name for the new DOSA account name. Creating a new DOSA account will override any file named `public_key.pem` or `private_key.pem` in the directory where you invoked the amplify CLI from.
 
     ```bash
     Select a service account (DOSA):  Create a new account
@@ -211,7 +211,7 @@ To use an existing DOSA account for the mesh agents, follow these steps:
     Enter the file path to the private key:  /Users/axway/private_key.pem
     ```
 
-3. Enter the name of the Kubernetes secret that will store the keys. The AMPLIFY CLI will create the Kubernetes secret for you in the namespace you selected for the mesh agent installation.
+3. Enter the name of the Kubernetes secret that will store the keys. The amplify CLI will create the Kubernetes secret for you in the namespace you selected for the mesh agent installation.
 
     ```bash
     Enter the name of the secret to store your public and private keys:  (agent-secrets)
@@ -287,7 +287,7 @@ helm upgrade --install --namespace apic-control apic-hybrid axway/apicentral-hyb
     apic-hybrid-list-598f8f9b4b-9wsc6   2/2     Running   0          90s
     ```
 
-3. The installation creates resources, which provide configuration to the API Discovery Agent and the Resource Discovery Agent. You can use the AMPLIFY CLI to verify the agents are configured and running, and to list the resources that are expect to exist as a result of the agents discovering the `apic-hybrid-list` service.
+3. The installation creates resources, which provide configuration to the API Discovery Agent and the Resource Discovery Agent. You can use the amplify CLI to verify the agents are configured and running, and to list the resources that are expect to exist as a result of the agents discovering the `apic-hybrid-list` service.
 
     ```bash
     amplify central get apispecs -s mesh-demo

@@ -1,9 +1,9 @@
 ---
-title: Build an environment using the AMPLIFY Central CLI
+title: Build an environment using the amplify Central CLI
 linkTitle: Build an environment
 weight: 110
 date: 2020-06-10T00:00:00.000Z
-description: Learn how your DevOps process can use AMPLIFY Central CLI to build
+description: Learn how your DevOps process can use amplify Central CLI to build
   and manage your environments.
 ---
 
@@ -14,7 +14,7 @@ description: Learn how your DevOps process can use AMPLIFY Central CLI to build
 
 ## Objectives
 
-Learn how to create and manage your distributed cloud and on-premise environments using the AMPLIFY Central CLI. This includes the representation of connected Axway Agent environments (AMPLIFY API Management V7 and AWS).
+Learn how to create and manage your distributed cloud and on-premise environments using the amplify Central CLI. This includes the representation of connected Axway Agent environments (amplify API Management V7 and AWS).
 
 * Create a new environment
 * Retrieve a list of all available environments
@@ -123,4 +123,4 @@ amplify central delete env <name> --wait
 
 ## Review
 
-You have learned how to use the AMPLIFY Central CLI to build and manage your environments.
+You have learned how to use the amplify Central CLI to build and manage your environments.

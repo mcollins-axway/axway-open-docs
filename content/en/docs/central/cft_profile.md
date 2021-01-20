@@ -3,12 +3,12 @@ title: Configure a CFT Profile
 linkTitle: Configure a CFT Profile
 weight: 90
 date: 2019-07-30
-description: Learn how to configure a CFT (Cross File Transfer) profile in AMPLIFY Central.
+description: Learn how to configure a CFT (Cross File Transfer) profile in amplify Central.
 ---
 
 ## Before you start
 
-* You will need a user account for AMPLIFY Central
+* You will need a user account for amplify Central
 
 ## Objectives
 
@@ -40,4 +40,4 @@ For more information on how to create and deploy a flow using Flow Central, see 
 
 ## Review
 
-You have learned how to add, update, and delete a CFT Profile to an app in AMPLIFY Central.
+You have learned how to add, update, and delete a CFT Profile to an app in amplify Central.

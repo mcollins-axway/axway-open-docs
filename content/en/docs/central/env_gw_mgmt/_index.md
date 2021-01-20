@@ -8,7 +8,7 @@ description: Understand environments in a topology, what they are, and what can 
 
 {{< alert title="Public beta" color="warning" >}}This feature is currently in **public beta** and not yet available for production use.{{< /alert >}}
 
-Within topology, environments represent a group of assets discovered from a gateway, a repository, or anything manually added to the environment. These grouped assets (for example, services, webhooks, secrets) are displayed in AMPLIFY Central. Environments are at the highest hierarchical level, and all assets are scoped within.
+Within topology, environments represent a group of assets discovered from a gateway, a repository, or anything manually added to the environment. These grouped assets (for example, services, webhooks, secrets) are displayed in amplify Central. Environments are at the highest hierarchical level, and all assets are scoped within.
 
 The following is an example of a simple environment with an API service asset:
 
@@ -29,14 +29,14 @@ You can combine assets within an environment to create catalog items that consum
 
 ## Synchronize your environment with a gateway
 
-Using agents is the recommended way to add service assets to your environment. When a discovery agent is installed on your gateway, the agent will auto-discover service assets and add them to your environment in AMPLIFY Central. The traceability agent will send API traffic logs from your gateway to AMPLIFY Central, where you can then view and analyze the logs.
+Using agents is the recommended way to add service assets to your environment. When a discovery agent is installed on your gateway, the agent will auto-discover service assets and add them to your environment in amplify Central. The traceability agent will send API traffic logs from your gateway to amplify Central, where you can then view and analyze the logs.
 
 For more information about the agents, see:
 
 * [Discovery and Traceability Agents for API Manager](/docs/central/connect-api-manager/).
 * [Discovery and Traceability Agents for AWS Gateway](/docs/central/connect-aws-gateway/).
 
-To manually synchronize your environment, you can use the [AMPLIFY Central CLI](/docs/central/cli_central/cli_apiservices) or the [AMPLIFY Central APIs](https://apicentral.axway.com/apis/docs). Note that changes in your deployment will not be automatically synchronized with AMPLIFY Central.
+To manually synchronize your environment, you can use the [amplify Central CLI](/docs/central/cli_central/cli_apiservices) or the [amplify Central APIs](https://apicentral.axway.com/apis/docs). Note that changes in your deployment will not be automatically synchronized with amplify Central.
 
 ## Asset definitions
 

@@ -3,7 +3,7 @@ title: Manage an Axway SaaS Gateway API proxy
 linkTitle: Manage an Axway SaaS Gateway API proxy
 weight: 100
 date: 2020-06-01T00:00:00.000Z
-description: Learn how your DevOps service can use AMPLIFY Central CLI to manage your Axway SaaS Gateway API proxies.
+description: Learn how your DevOps service can use amplify Central CLI to manage your Axway SaaS Gateway API proxies.
 ---
 
 ## Before you start
@@ -13,16 +13,16 @@ description: Learn how your DevOps service can use AMPLIFY Central CLI to manage
 
 ## Objectives
 
-Learn how to use AMPLIFY Central CLI to manage your AMPLIFY SaaS Gateway API proxies.
+Learn how to use amplify Central CLI to manage your amplify SaaS Gateway API proxies.
 
 * Create a YAML configuration file representing your API proxy
-* Create the API proxy using AMPLIFY Central CLI
-* Promote the API proxy using AMPLIFY Central CLI
-* Test the API proxy using AMPLIFY Central UI or a REST client
+* Create the API proxy using amplify Central CLI
+* Promote the API proxy using amplify Central CLI
+* Test the API proxy using amplify Central UI or a REST client
 
 ## Create the API configuration file
 
-AMPLIFY Central DevOps APIs require a YAML configuration file describing your API (the service you are proxying through AMPLIFY Central) in terms of the API name, base path, Swagger, client authentication, and so on. For example:
+amplify Central DevOps APIs require a YAML configuration file describing your API (the service you are proxying through amplify Central) in terms of the API name, base path, Swagger, client authentication, and so on. For example:
 
 ```
 version: v1 # Version of the file format
@@ -44,7 +44,7 @@ proxy:
         name: 'Default Team'
 ```
 
-If you specify a client authentication policy other than `pass-through` (for example, `api-key`, `jwt-token`, or `oauth`), then you must also specify the client `app`. If the app does not already exist in AMPLIFY Central, it is created.
+If you specify a client authentication policy other than `pass-through` (for example, `api-key`, `jwt-token`, or `oauth`), then you must also specify the client `app`. If the app does not already exist in amplify Central, it is created.
 
 The `oauth` type has additional OAuth specific properties that can also be added. These include flows, authorizationUrl, tokenUrl, and scopes. These additional properties map directly to the [Swagger 2.0 OAuth security scheme](https://swagger.io/docs/specification/2-0/authentication/).
 
@@ -115,7 +115,7 @@ proxy:
 
 It is recommended to keep the YAML configuration file in the same source control repository as the source code of your service, so that you can update the configuration file when you make changes to the code for your service.
 
-## Create an AMPLIFY SaaS Gateway API proxy
+## Create an amplify SaaS Gateway API proxy
 
 The `create` command _creates_ an API proxy if none already exists for this API, or _updates_ the existing API proxy. It returns the name of the API proxy created.
 
@@ -133,7 +133,7 @@ This command also supports the following options:
 
 For details of the API, see [Create proxy API](https://d-api.docs.stoplight.io/api-reference/devops-api/create-proxy).
 
-## Promote an AMPLIFY SaaS Gateway API proxy
+## Promote an amplify SaaS Gateway API proxy
 
 The `promote` command deploys the latest revision of the API proxy to a target runtime group. It returns the URL of the deployed API proxy and, if you have specified an API key client authentication, a set of API keys to access the API proxy.
 
@@ -158,12 +158,12 @@ This command supports the following options:
 
 For details of the API, see [Promote proxy API](https://d-api.docs.stoplight.io/api-reference/devops-api/promote-proxy).
 
-## Test the AMPLIFY SaaS Gateway API proxy
+## Test the amplify SaaS Gateway API proxy
 
-The API proxy is now accessible on the URL returned from the `promote` command. You can test the methods and view the results in AMPLIFY Central UI or using a REST client.
+The API proxy is now accessible on the URL returned from the `promote` command. You can test the methods and view the results in amplify Central UI or using a REST client.
 
-To test the API methods in AMPLIFY Central UI, select **API Proxies** in the left navigation bar, click the appropriate API proxy from the list, and select the **Test Methods** tab.
+To test the API methods in amplify Central UI, select **API Proxies** in the left navigation bar, click the appropriate API proxy from the list, and select the **Test Methods** tab.
 
 ## Review
 
-You have learned how to use the AMPLIFY Central DevOps APIs by way of AMPLIFY CLI to manage your API proxies.
+You have learned how to use the amplify Central DevOps APIs by way of amplify CLI to manage your API proxies.
