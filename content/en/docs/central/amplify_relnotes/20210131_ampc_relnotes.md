@@ -22,10 +22,9 @@ The CLI extension is compatible **only** with the AMPLIFY CLI **version 1.4** (<
 The AMPLIFY Central CLI includes the following enhancements:  
 
 * installation of Azure agents
-* Providers can use new resource shortnames to access resources (use 'amplify central get' to view list resource shortnames).
-* Providers can remove previously configure parameters using the interactive mode of the Central CLI (use 'amplify central config unset <key>')
-* Providers can view a list of multiple resource tables (use 'amplify central get apis, apisr, apisi –s <scopename> ) 
-
+* Providers can use new resource shortnames to access resources (use `amplify central get` to view list resource shortnames)
+* Providers can remove previously configure parameters using the interactive mode of the Central CLI (use `amplify central config unset <key>`)
+* Providers can view a list of multiple resource tables (use `amplify central get apis, apisr, apisi –s <scopename>`)
 
 ### AMPLIFY Central WebUI
 
@@ -34,7 +33,7 @@ The AMPLIFY Central WebUI is used by both the API providers and consumers to man
 The AMPLIFY Central WebUI includes the following enhancements:  
 
 * View the agents connected to an environment in environment detail page
-* Improved Provider UX of API Service List and Details page: 
+* Improved Provider UX of API Service List and Details page:
 
     * Providers can view the user who made the last modification from the list of API Service versions.
     * Providers can search/sort on the Endpoints and Catalog Item list tables.
@@ -85,7 +84,7 @@ This version of AMPLIFY Central has the following limitations:
     
 * Azure agents:
 
-    * Discovery Agent is not managing revision and version yet.
+    * Discovery Agent is not managing revision and version yet
     * Traceability agent is not reporting the App usage traffic
 
 * Mesh governance alpha Discovery Agents:
