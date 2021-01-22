@@ -13,9 +13,19 @@ The following new features and enhancements are available in this update.
 
 The AMPLIFY Central CLI is a package for managing AMPLIFY Central resources with a DevOps approach to API Management.
 
+AMPLIFY Central CLI version 0.1.19 is now available on NPM (<https://www.npmjs.com/package/@axway/amplify-central-cli/v/0.1.19>)
+
+The CLI extension is compatible **only** with the AMPLIFY CLI **version 1.4** (<https://www.npmjs.com/package/@axway/amplify-cli/v/1.4.0>)
+
+**This is not yet compatible with the Axway CLI**.
+
 The AMPLIFY Central CLI includes the following enhancements:  
 
-* ADD ENHANCEMENTS HERE
+* installation of Azure agents
+* Providers can use new resource shortnames to access resources (use 'amplify central get' to view list resource shortnames).
+* Providers can remove previously configure parameters using the interactive mode of the Central CLI (use 'amplify central config unset <key>')
+* Providers can view a list of multiple resource tables (use 'amplify central get apis, apisr, apisi –s <scopename> ) 
+
 
 ### AMPLIFY Central WebUI
 
@@ -23,7 +33,20 @@ The AMPLIFY Central WebUI is used by both the API providers and consumers to man
 
 The AMPLIFY Central WebUI includes the following enhancements:  
 
-* ADD ENHANCEMENTS HERE
+* View the agents connected to an environment in environment detail page
+* Improved Provider UX of API Service List and Details page: 
+
+    * Providers can view the user who made the last modification from the list of API Service versions.
+    * Providers can search/sort on the Endpoints and Catalog Item list tables.
+    * Providers can add new API Services from the UI.
+
+### Axway Edge Gateway / AWS / Azure Agents
+
+To provide better visibility into your mutli-type gateway eco system, two sets of agents are provided. These agents collect data from the Gateway (API / traffic) and exposes it in AMPLIFY Central, providing you with a global vision of your eco system from a single interface.
+
+The agents include the following enhancements:
+
+* Azure gateway support
 
 ### Mesh governance
 
@@ -59,6 +82,11 @@ This version of AMPLIFY Central has the following limitations:
 
     * Discovery Agent is working with only one AWS Region (the one used when installing the agent).
     * Discovery Agent does not associate the usage plan and API when a subscriber chooses a usage plan that is not already linked to the chosen API.
+    
+* Azure agents:
+
+    * Discovery Agent is not managing revision and version yet.
+    * Traceability agent is not reporting the App usage traffic
 
 * Mesh governance alpha Discovery Agents:
 
