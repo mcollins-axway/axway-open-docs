@@ -81,7 +81,7 @@ This version of AMPLIFY Central has the following limitations:
 
     * Discovery Agent is working with only one AWS Region (the one used when installing the agent).
     * Discovery Agent does not associate the usage plan and API when a subscriber chooses a usage plan that is not already linked to the chosen API.
-    
+
 * Azure agents:
 
     * Discovery Agent is not managing revision and version yet
