@@ -70,7 +70,7 @@ Mesh governance includes the following enhancements:
 The following issues were fixed in this version of AMPLIFY Central:
 
 * Previously, the Mesh Governance helm apic-hybrid chart installation step would not accept an alternate target namespace. Now, the --namespace option can use any any properly prepared namespace on the target cluster.
-* Previously, some AMPLIFY Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all AMPLIFY Central resources. 
+* Previously, some AMPLIFY Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all AMPLIFY Central resources.
 
 ## Known limitations
 
