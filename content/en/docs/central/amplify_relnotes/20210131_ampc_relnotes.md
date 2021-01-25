@@ -21,7 +21,8 @@ The CLI extension is compatible **only** with the AMPLIFY CLI **version 1.4** (<
 
 The AMPLIFY Central CLI includes the following enhancements:  
 
-* installation of Azure agents
+* installation of Azure agents (use `amplify central install agents` using the new **Azure** option)
+* installatin of the alpha Mesh Governance Discovery Agent (use `amplify central install agents` using the new **Kubernetes** option)
 * Providers can use new resource shortnames to access resources (use `amplify central get` to view list resource shortnames)
 * Providers can remove previously configure parameters using the interactive mode of the Central CLI (use `amplify central config unset <key>`)
 * Providers can view a list of multiple resource tables (use `amplify central get apis, apisr, apisi –s <scopename>`)
@@ -45,7 +46,7 @@ To provide better visibility into your mutli-type gateway eco system, two sets o
 
 The agents include the following enhancements:
 
-* Azure gateway support
+* Azure gateway support. Refer to [Connect Azure Gateway to Axway AMPLIFY latform](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-azure-gateway/index.html)
 
 ### Mesh governance
 
@@ -53,12 +54,16 @@ AMPLIFY Central mesh governance enables you to govern and manage your APIs, publ
 
 Mesh governance includes the following enhancements:
 
-* The Mesh Governance open beta has been updated to use helm3 and Kubernetes 1.16.
-* The Mesh Traceability Agent has been updated to allow API transaction header logging to be globally enabled or disabled with an option passed to it on deployment. This will affect all API transactions visible in the API Observer.
-* The Mesh Traceability Agent has been updated to allow a set of header redaction rules to be passed to it on deployment. The rules apply globally to all transaction logging and provide options for path, query parameter and header filtering. Request and response headers may be separately managed to selectively redacted or entirely removed from the results visible in the API Observer.
-* Both of these options are applied using the mesh agent helm deployment step and are documented in Step 4 of the full mesh client and cluster setup instructions here: [https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it](https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it)
+* Mesh Governance deployment operations have updated to use helm3 and to support Kubernetes 1.16 customer clusters.
 
-Redeploying with helm to change either of these options will cause the mesh agent to restart.
+* The Mesh Traceability Agent has been updated to allow API transaction header logging to be globally enabled or disabled with an option passed to it on deployment. This will affect all API transactions visible in the API Observer.
+* The Mesh  Governance open beta Traceability Agent has been updated to allow a set of header redaction rules to be passed to it on deployment. The rules apply globally to all transaction logging and provide options for path, query parameter and header filtering. Request and response headers may be separately managed to selectively redacted or entirely removed from the results visible in the API Observer.
+* Both of these Traceability agent options are applied using the mesh agent helm deployment step and are documented in Step 4 of the full mesh client and cluster setup instructions here: [https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it](https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it). Redeploying with helm to change either of these options will cause the mesh agent to restart.
+
+* The alpha Mesh Governance Discovery Agent can be installed with the CLI option: `amplify central install agents` using the new **Kubernetes** option.
+* The alpha agent installation is documented here: (<https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html>)
+* The alpha agent usage and configuration is documented here: (<https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html>)
+* The alpha Mesh Discovery agent limitations are noted below.
 
 ## Fixed issues
 
