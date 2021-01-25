@@ -62,7 +62,7 @@ Mesh governance includes the following enhancements:
 
 * The alpha Mesh Governance Discovery Agent can be installed with the CLI option: `amplify central install agents` using the new **Kubernetes** option.
 * The alpha agent installation is documented here: [https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html)
-* The alpha agent usage and configuration is documented here: [https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html
+* The alpha agent usage and configuration is documented here: [https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html)
 * The alpha Mesh Discovery agent limitations are noted below.
 
 ## Fixed issues
