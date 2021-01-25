@@ -46,7 +46,7 @@ To provide better visibility into your mutli-type gateway eco system, two sets o
 
 The agents include the following enhancements:
 
-* Azure gateway support. Refer to [Connect Azure Gateway to Axway AMPLIFY latform](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-azure-gateway/index.html)
+* Azure gateway support. Refer to [Connect Azure Gateway to Axway AMPLIFY platform](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-azure-gateway/index.html)
 
 ### Mesh governance
 
