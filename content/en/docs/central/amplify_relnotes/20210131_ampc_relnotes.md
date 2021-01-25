@@ -56,13 +56,13 @@ Mesh governance includes the following enhancements:
 
 * Mesh Governance deployment operations have updated to use helm3 and to support Kubernetes 1.16 customer clusters.
 
-* The Mesh Traceability Agent has been updated to allow API transaction header logging to be globally enabled or disabled with an option passed to it on deployment. This will affect all API transactions visible in the API Observer.
+* The Mesh Governance open beta Traceability Agent has been updated to allow API transaction header logging to be globally enabled or disabled with an option passed to it on deployment. This will affect all API transactions visible in the API Observer.
 * The Mesh  Governance open beta Traceability Agent has been updated to allow a set of header redaction rules to be passed to it on deployment. The rules apply globally to all transaction logging and provide options for path, query parameter and header filtering. Request and response headers may be separately managed to selectively redacted or entirely removed from the results visible in the API Observer.
 * Both of these Traceability agent options are applied using the mesh agent helm deployment step and are documented in Step 4 of the full mesh client and cluster setup instructions here: [https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it](https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it). Redeploying with helm to change either of these options will cause the mesh agent to restart.
 
 * The alpha Mesh Governance Discovery Agent can be installed with the CLI option: `amplify central install agents` using the new **Kubernetes** option.
-* The alpha agent installation is documented here: (<https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html>)
-* The alpha agent usage and configuration is documented here: (<https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html>)
+* The alpha agent installation is documented here: [https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html)
+* The alpha agent usage and configuration is documented here: [https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/discover-apis-and-services/index.html
 * The alpha Mesh Discovery agent limitations are noted below.
 
 ## Fixed issues
