@@ -71,7 +71,7 @@ The following issues were fixed in this version of AMPLIFY Central:
 
 * Previously, the Mesh Governance helm apic-hybrid chart installation step would not accept an alternate target namespace. Now, the `--namespace` option can use any any properly prepared namespace on the target cluster.
 * Previously, some AMPLIFY Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all AMPLIFY Central resources.
-* Previously, when v7 or AWS or SaaS traceability agent sent traffic, the envirnoment name was not visbible in platform dashboard. Now, the environment name is visible in all dashboards.
+* Previously, the environment name was not reported for API transactions shown in the AMPLIFY platform Visibility Dashboard. Now, API traffic reported by the v7 or AWS traceability agents as well as by the SaaS gateway will report the environment name for transactions visible in the API Observer and the platform Visibility Dashboard.
 
 ## Known limitations
 
