@@ -53,7 +53,11 @@ AMPLIFY Central mesh governance enables you to govern and manage your APIs, publ
 
 Mesh governance includes the following enhancements:
 
-* ADD ENHANCEMENTS HERE
+* The Mesh Traceability Agent has been updated to allow API transaction header logging to be globally enabled or disabled with an option passed to it on deployment. This will affect all API transactions visible in the API Observer.
+* The Mesh Traceability Agent has been updated to allow a set of header redaction rules to be passed to it on deployment. The rules apply globally to all transaction logging and provide options for path, query parameter and header filtering. Request and response headers may be separately managed to selectively redacted or entirely removed from the results visible in the API Observer.
+* Both of these options are applied using the mesh agent helm deployment step and are documented in Step 4 of the full mesh client and cluster setup instructions here: [https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it](https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it)
+
+Redeploying with helm to change either of these options will cause the mesh agent to restart.
 
 ## Fixed issues
 
