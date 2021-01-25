@@ -23,9 +23,9 @@ The AMPLIFY Central CLI includes the following enhancements:
 
 * installation of Azure agents (use `amplify central install agents` using the new **Azure** option)
 * installatin of the alpha Mesh Governance Discovery Agent (use `amplify central install agents` using the new **Kubernetes** option)
-* Providers can use new resource shortnames to access resources (use `amplify central get` to view list resource shortnames)
-* Providers can remove previously configure parameters using the interactive mode of the Central CLI (use `amplify central config unset <key>`)
-* Providers can view a list of multiple resource tables (use `amplify central get apis, apisr, apisi –s <scopename>`)
+* Providers can use new resource shortnames to access resources (use `amplify central get` to view the list of all resource shortnames)
+* Providers can remove previously configured parameters using the interactive mode of the Central CLI (use `amplify central config unset <key>`)
+* Providers can request multiple resources at a time. The result will show the resource tables split according to their resouce kind (sample `amplify central get apis,apisr,apisi –s <scopename>`)
 
 ### AMPLIFY Central WebUI
 
@@ -69,7 +69,8 @@ Mesh governance includes the following enhancements:
 
 The following issues were fixed in this version of AMPLIFY Central:
 
-* Previously, Now,
+* Previously, the Mesh Governance helm apic-hybrid chart installation step would not accept an alternate target namespace. Now, the --namespace option can use any any properly prepared namespace on the target cluster.
+* Previously, some AMPLIFY Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all AMPLIFY Central resources. 
 
 ## Known limitations
 
