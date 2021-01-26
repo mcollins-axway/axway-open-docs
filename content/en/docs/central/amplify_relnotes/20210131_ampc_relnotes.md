@@ -21,11 +21,11 @@ The CLI extension is compatible **only** with the Amplify CLI **version 1.4** (<
 
 The Amplify Central CLI includes the following enhancements:  
 
-* installation of Azure agents (use `amplify central install agents` using the new **Azure** option)
-* installation of the alpha Mesh Governance Discovery Agent (use `amplify central install agents` using the new **Kubernetes** option)
+* Installation of Azure agents (use `amplify central install agents` using the new **Azure** option)
+* Installation of the alpha Mesh Governance Discovery Agent (use `amplify central install agents` using the new **Kubernetes** option)
 * Providers can use new resource shortnames to access resources (use `amplify central get` to view the list of all resource shortnames)
 * Providers can remove previously configured parameters using the interactive mode of the Central CLI (use `amplify central config unset <key>`)
-* Providers can request multiple resources at a time. The result will show the resource tables split according to their resouce kind (sample `amplify central get apis,apisr,apisi –s <scopename>`)
+* Providers can request multiple resources at one time. The result will show the resource tables split according to their resouce kind (sample `amplify central get apis,apisr,apisi –s <scopename>`)
 
 ### Amplify Central WebUI
 
