@@ -1,25 +1,25 @@
 ---
-title: AMPLIFY Central January 2021 Release Notes
-linktitle: AMPLIFY Central January 2021
+title: Amplify Central January 2021 Release Notes
+linktitle: Amplify Central January 2021
 weight: 90
-description: AMPLIFY Central enables the user to manage their provider /
-  consumer view. For more information, see the AMPLIFY Central documentation.
+description: Amplify Central enables the user to manage their provider /
+  consumer view. For more information, see the Amplify Central documentation.
 ---
 ## New features and enhancements
 
 The following new features and enhancements are available in this update.
 
-### AMPLIFY Central CLI
+### Amplify Central CLI
 
-The AMPLIFY Central CLI is a package for managing AMPLIFY Central resources with a DevOps approach to API Management.
+The Amplify Central CLI is a package for managing Amplify Central resources with a DevOps approach to API Management.
 
-AMPLIFY Central CLI version 0.6.0 is now available on NPM (<https://www.npmjs.com/package/@axway/amplify-central-cli/v/0.6.0>)
+Amplify Central CLI version 0.6.0 is now available on NPM (<https://www.npmjs.com/package/@axway/amplify-central-cli/v/0.6.0>)
 
-The CLI extension is compatible **only** with the AMPLIFY CLI **version 1.4** (<https://www.npmjs.com/package/@axway/amplify-cli/v/1.4.0>)
+The CLI extension is compatible **only** with the Amplify CLI **version 1.4** (<https://www.npmjs.com/package/@axway/amplify-cli/v/1.4.0>)
 
 **This is not yet compatible with the Axway CLI**.
 
-The AMPLIFY Central CLI includes the following enhancements:  
+The Amplify Central CLI includes the following enhancements:  
 
 * installation of Azure agents (use `amplify central install agents` using the new **Azure** option)
 * installation of the alpha Mesh Governance Discovery Agent (use `amplify central install agents` using the new **Kubernetes** option)
@@ -27,11 +27,11 @@ The AMPLIFY Central CLI includes the following enhancements:
 * Providers can remove previously configured parameters using the interactive mode of the Central CLI (use `amplify central config unset <key>`)
 * Providers can request multiple resources at a time. The result will show the resource tables split according to their resouce kind (sample `amplify central get apis,apisr,apisi –s <scopename>`)
 
-### AMPLIFY Central WebUI
+### Amplify Central WebUI
 
-The AMPLIFY Central WebUI is used by both the API providers and consumers to manage and consume APIs.
+The Amplify Central WebUI is used by both the API providers and consumers to manage and consume APIs.
 
-The AMPLIFY Central WebUI includes the following enhancements:  
+The Amplify Central WebUI includes the following enhancements:  
 
 * View the agents connected to an environment in environment detail page
 * Improved Provider UX of API Service List and Details page:
@@ -42,15 +42,15 @@ The AMPLIFY Central WebUI includes the following enhancements:
 
 ### Axway Edge Gateway / AWS / Azure Agents
 
-To provide better visibility into your mutli-type gateway eco system, two sets of agents are provided. These agents collect data from the Gateway (API / traffic) and exposes it in AMPLIFY Central, providing you with a global vision of your eco system from a single interface.
+To provide better visibility into your mutli-type gateway eco system, two sets of agents are provided. These agents collect data from the Gateway (API / traffic) and exposes it in Amplify Central, providing you with a global vision of your eco system from a single interface.
 
 The agents include the following enhancements:
 
-* Azure gateway support. Refer to [Connect Azure Gateway to Axway AMPLIFY platform](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-azure-gateway/index.html)
+* Azure gateway support. Refer to [Connect Azure Gateway to Axway Amplify platform](https://docs.axway.com/bundle/axway-open-docs/page/docs/central/connect-azure-gateway/index.html)
 
 ### Mesh governance
 
-AMPLIFY Central mesh governance enables you to govern and manage your APIs, public and private services, along with the hybrid environments where they are located.
+Amplify Central mesh governance enables you to govern and manage your APIs, public and private services, along with the hybrid environments where they are located.
 
 Mesh governance includes the following enhancements:
 
@@ -67,15 +67,15 @@ Mesh governance includes the following enhancements:
 
 ## Fixed issues
 
-The following issues were fixed in this version of AMPLIFY Central:
+The following issues were fixed in this version of Amplify Central:
 
 * Previously, the Mesh Governance helm apic-hybrid chart installation step would not accept an alternate target namespace. Now, the `--namespace` option can use any any properly prepared namespace on the target cluster.
-* Previously, some AMPLIFY Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all AMPLIFY Central resources.
-* Previously, the environment name was not reported for API transactions shown in the AMPLIFY platform Visibility Dashboard. Now, API traffic reported by the v7 or AWS traceability agents as well as by the SaaS gateway will report the environment name for transactions visible in the API Observer and the platform Visibility Dashboard.
+* Previously, some Amplify Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all Amplify Central resources.
+* Previously, the environment name was not reported for API transactions shown in the Amplify platform Visibility Dashboard. Now, API traffic reported by the v7 or AWS traceability agents as well as by the SaaS gateway will report the environment name for transactions visible in the API Observer and the platform Visibility Dashboard.
 
 ## Known limitations
 
-This version of AMPLIFY Central has the following limitations:
+This version of Amplify Central has the following limitations:
 
 * API Observer:
 
@@ -84,9 +84,8 @@ This version of AMPLIFY Central has the following limitations:
 * Axway Edge Gateway Agents:
 
     * Discovery Agent only discovers APIs having PassThrough, API Key and Oauth security.
-    * Discovery Agent cannot expose discovered APIs in multiple teams, so the organization structure on API Manager is lost in Central. As a result, the API provider must create the team in AMPLIFY Platform and share the API within appropriate teams.
-    * Discovery Agent cannot detect that an API has been renamed. Consequently, you will see both the old API and the new API on AMPLIFY Central.
-    * Discovery Agent does not handle frontend API deletion. Consequently, the Unified Catalog API is out of sync.
+    * Discovery Agent cannot expose discovered APIs in multiple teams, so the organization structure on API Manager is lost in Central. As a result, the API provider must create the team in Amplify Platform and share the API within appropriate teams.
+    * Currently when an API is renamed on the gateway the discovery agent is not able to recognize the API name change. This results in the API showing in Amplify Central with dual entries of both the originally discovered name and the newly changed name.
     * Traceability Agent is not working in an externally managed topology deployment.
 
 * AWS Gateway agents:
