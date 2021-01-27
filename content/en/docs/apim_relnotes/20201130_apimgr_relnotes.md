@@ -35,6 +35,7 @@ For more information, see [System property changes](/docs/apim_reference/system_
 ### Technical preview capability: YAML configuration store
 
 This update includes bug fixes and enhanced functionality for YAML configuration as follows:
+
 * Support conversion of XML configuration fragments to YAML configuration fragments
 * Support import and export of YAML configuration fragments
 * Allow user-controlled file names for YAML entities
