@@ -58,7 +58,7 @@ Mesh governance includes the following enhancements:
 
 * The Mesh Governance open beta Traceability Agent has been updated to allow API transaction header logging to be globally enabled or disabled with an option passed to it on deployment. This will affect all API transactions visible in the API Observer.
 * The Mesh  Governance open beta Traceability Agent has been updated to allow a set of header redaction rules to be passed to it on deployment. The rules apply globally to all transaction logging and provide options for path, query parameter and header filtering. Request and response headers may be separately managed to selectively redacted or entirely removed from the results visible in the API Observer.
-  * Both of these Traceability agent options are applied using the mesh agent helm deployment step and are documented in Step 4 of the full mesh client and cluster setup instructions here: [https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it](https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it). Redeploying with helm to change either of the two options above will cause the mesh agent to restart.
+* Both of these Traceability agent options are applied using the mesh agent helm deployment step and are documented in Step 4 of the full mesh client and cluster setup instructions here: [https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it](https://github.com/Axway/Setup-Amplify-Mesh-Governance/wiki/Step-4.-Create-an-Amplify-Central-environment-and-connect-your-Kubernetes-cluster-to-it). Redeploying with helm to change either of the two options above will cause the mesh agent to restart.
 
 * The alpha Mesh Governance Discovery Agent can be installed with the CLI option: `amplify central install agents` using the new **Kubernetes** option. Note that the alpha Mesh Governance agent capabilities are separate from the existing beta agents, and are available for preview and feedback.
 * The alpha agent installation is documented here: [https://docs.axway.com/bundle/axway-open-docs/page/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html](/docs/central/mesh_management/deploy-your-agents-with-the-amplify-cli/index.html).
@@ -70,7 +70,7 @@ Mesh governance includes the following enhancements:
 The following issues were fixed in this version of Amplify Central:
 
 * Previously, the Mesh Governance helm apic-hybrid chart installation step would not accept an alternate target namespace. Now, the `--namespace` option can use any any properly prepared namespace on the target cluster.
-* Previously, some Amplify Central CLI results from the amplify central get xxx commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all Amplify Central resources.
+* Previously, some Amplify Central CLI results from the `amplify central get xxx` commands did not correctly return their RESOURCE KIND and SCOPE KIND columns. Now, the RESOURCE KIND and SCOPE KIND columns are correctly populated for all Amplify Central resources.
 * Previously, the environment name was not reported for API transactions shown in the Amplify Platform Visibility Dashboard. Now, API traffic reported by the API Gateway or AWS Traceability Agents as well as by the SaaS gateway will report the environment name for transactions visible in the API Observer and the platform Visibility Dashboard.
 
 ## Known limitations
@@ -85,7 +85,7 @@ This version of Amplify Central has the following limitations:
 
     * Discovery Agent only discovers APIs having PassThrough, API Key and Oauth security.
     * Discovery Agent cannot expose discovered APIs in multiple teams, so the organization structure on API Manager is lost in Amplify Central. As a result, the API provider must create the team in Amplify Platform and share the API within appropriate teams.
-    * Currently when an API is renamed on the v7 gateway the discovery agent is not able to recognize the API name change. This results in the API showing in Amplify Central with dual entries of both the originally discovered name and the newly changed name.
+    * Currently when an API is renamed on the API Manager the Discovery Agent is not able to recognize the API name change. This results in the API displaying in Amplify Central with dual entries of both the originally discovered name and the newly changed name.
     * Traceability Agent is not working in an externally managed topology deployment.
 
 * AWS Gateway agents:
