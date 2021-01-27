@@ -36,7 +36,7 @@ The Amplify Central WebUI includes the following enhancements:
 * View the agents connected to an environment in the Environment Detail page
 * Improved Provider UX of API Service List and Details page:
 
-    * Providers can view the user who made the last modification from the list of API Service versions.
+    * Providers can view the user who made the last modification from the list of API Service versions
     * Providers can search/sort on the Endpoints and Catalog Item list tables.
     * Providers can add new API Services from the UI.
 
