@@ -35,12 +35,14 @@ If the parameter is not specified the script will prompt for a passphrase. The p
 This update includes bug fixes and enhanced functionality as follows:
 
 * Support for certificates and keys in standard PEM files, see [How to add a certificate and private key](/docs/apim_yamles/apim_yamles_cli/yamles_edit/#add-a-new-certificate-and-private-key-to-a-yaml-configuration)
-* Enhanced support for managing more configuration content in externalized files, [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
-* Restructured entity type information into separate files to enable custom type support, [Entity types in YAML configuration](/docs/apim_yamles/apim_yamles_references/yamles_types/)
+* Enhanced support for managing more configuration content in externalized files, see [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
+* Restructured entity type information into separate files to enable custom type support, see [Entity types in YAML configuration](/docs/apim_yamles/apim_yamles_references/yamles_types/)
 * Enhanced policy readability
 * Enhanced support for environmentalization with encryption
 * Fix issue of reordering fields in YAML files after configuration edits via tooling
-* Support `${env.CERT}` environmentalization of certificates in the YAML configuratioin
+* Support `${env.CERT}` environmentalization of certificates in the YAML configuration
+
+See [September release notes](/docs/apim_relnotes/20200930_apimgr_relnotes/technical-preview-capability:-yaml-configuration-store) for an overview, and [YAML configuration docs](/docs/apim_yamles/) for more detailed information.
 
 ## Important changes
 
