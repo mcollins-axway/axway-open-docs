@@ -32,6 +32,17 @@ In this update, additional API life cycle events (deprecate, undeprecate, upgrad
 
 For more information, see [System property changes](/docs/apim_reference/system_props/).
 
+### Technical preview capability: YAML configuration store
+
+This update includes bug fixes and enhanced functionality for YAML configuration as follows:
+* Support conversion of XML configuration fragments to YAML configuration fragments
+* Support import and export of YAML configuration fragments
+* Allow user-controlled file names for YAML entities
+* Improved layout in YAML entity files
+* Enhanced support for managing more configuration content in externalized files, [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
+
+See [September release notes](/docs/apim_relnotes/20200930_apimgr_relnotes/technical-preview-capability:-yaml-configuration-store) for an overview, and [YAML configuration docs](/docs/apim_yamles/) for more detailed information.
+
 ## Important changes
 
 There are no major changes in this update.
