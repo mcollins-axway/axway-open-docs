@@ -38,7 +38,7 @@ The Amplify Central WebUI includes the following enhancements:
 
     * Providers can view the user who made the last modification from the list of API Service versions
     * Providers can search/sort on the Endpoints and Catalog Item list tables
-    * Providers can add new API Services from the UI.
+    * Providers can add new API Services from the UI
 
 ### Axway Edge Gateway / AWS / Azure Agents
 
