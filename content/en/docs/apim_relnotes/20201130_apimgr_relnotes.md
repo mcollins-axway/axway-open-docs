@@ -40,7 +40,7 @@ This update includes bug fixes and enhanced functionality for YAML configuration
 * Support import and export of YAML configuration fragments
 * Allow user-controlled file names for YAML entities
 * Improved layout in YAML entity files
-* Enhanced support for managing more configuration content in externalized files, [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
+* Enhanced support for managing more configuration content in externalized files, see [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
 
 See [September release notes](/docs/apim_relnotes/20200930_apimgr_relnotes/technical-preview-capability:-yaml-configuration-store) for an overview, and [YAML configuration docs](/docs/apim_yamles/) for more detailed information.
 
