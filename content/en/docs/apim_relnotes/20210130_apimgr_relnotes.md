@@ -33,6 +33,7 @@ If the parameter is not specified the script will prompt for a passphrase. The p
 ### Technical preview capability: YAML configuration store
 
 This update includes bug fixes and enhanced functionality as follows:
+
 * Support for certificates and keys in standard PEM files, see [Hpw to a certificate and private key](/docs/apim_yamles/apim_yamles_cli/yamles_edit/#add-a-new-certificate-and-private-key-to-a-yaml-configuration) 
 * Enhanced support for managing more configuration content in externalized files
 * Restructured entity type information into separate files to enable custom type support
