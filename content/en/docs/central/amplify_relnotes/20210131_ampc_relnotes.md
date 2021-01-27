@@ -33,7 +33,7 @@ The Amplify Central WebUI is used by both the API providers and consumers to man
 
 The Amplify Central WebUI includes the following enhancements:  
 
-* View the agents connected to an environment in environment detail page
+* View the agents connected to an environment in the Environment Detail page
 * Improved Provider UX of API Service List and Details page:
 
     * Providers can view the user who made the last modification from the list of API Service versions.
