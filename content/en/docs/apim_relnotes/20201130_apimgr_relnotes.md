@@ -36,8 +36,8 @@ For more information, see [System property changes](/docs/apim_reference/system_
 
 This update includes bug fixes and enhanced functionality for YAML configuration as follows:
 
-* Support conversion of XML configuration fragments to YAML configuration fragments
-* Support import and export of YAML configuration fragments
+* Support conversion of XML configuration fragments to YAML configuration fragments, see [Convert XML fragments to YAML](/docs/apim_yamles/apim_yamles_cli/yamles_cli_convert#convert-your-xml-configuration-fragment-to-a-yaml-configuration-fragment)
+* Support import and export of YAML configuration fragments, see [Import and export YAML configuration using CLI](/docs/apim_yamles/apim_yamles_cli/yamles_cli_importexport)
 * Allow user-controlled file names for YAML entities
 * Improved layout in YAML entity files
 * Enhanced support for managing more configuration content in externalized files, see [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
