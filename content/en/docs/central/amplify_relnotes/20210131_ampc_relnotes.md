@@ -84,7 +84,7 @@ This version of Amplify Central has the following limitations:
 * Axway Edge Gateway Agents:
 
     * Discovery Agent only discovers APIs having PassThrough, API Key and Oauth security.
-    * Discovery Agent cannot expose discovered APIs in multiple teams, so the organization structure on API Manager is lost in Central. As a result, the API provider must create the team in Amplify Platform and share the API within appropriate teams.
+    * Discovery Agent cannot expose discovered APIs in multiple teams, so the organization structure on API Manager is lost in Amplify Central. As a result, the API provider must create the team in Amplify Platform and share the API within appropriate teams.
     * Currently when an API is renamed on the v7 gateway the discovery agent is not able to recognize the API name change. This results in the API showing in Amplify Central with dual entries of both the originally discovered name and the newly changed name.
     * Traceability Agent is not working in an externally managed topology deployment.
 
