@@ -96,7 +96,7 @@ This version of Amplify Central has the following limitations:
 * Azure agents:
 
     * Discovery Agent is not managing revision and version yet.
-    * Traceability agent is not reporting the App usage traffic
+    * Traceability agent is not reporting the App usage traffic.
 
 * Mesh governance alpha Discovery Agents:
 
