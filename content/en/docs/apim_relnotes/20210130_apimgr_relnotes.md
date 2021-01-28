@@ -30,19 +30,19 @@ For more information, see:
 We have added a new `--passphrase` parameter to the restore operation in `kpsadmin`.
 If the parameter is not specified the script will prompt for a passphrase. The passphrase parameter is provided to allow data that may be encrypted at rest, be decrypted when being restored into the target API Gateway environment. For more info, see [Manage KPS using kpsadmin](https://developjan21--axway-open-docs.netlify.app/docs/apim_policydev/apigw_kps/how_to_use_kpsadmin_command/).
 
-### Technical preview capability: YAML configuration store
+### YAML configuration store (Technical preview capability)
 
-This update includes bug fixes and enhanced functionality as follows:
+This update includes bug fixes and enhanced functionality for YAML configuration as follows:
 
-* Support for certificates and keys in standard PEM files, see [How to add a certificate and private key](/docs/apim_yamles/apim_yamles_cli/yamles_edit/#add-a-new-certificate-and-private-key-to-a-yaml-configuration)
-* Enhanced support for managing more configuration content in externalized files, see [Manage externalized files](/docs/apim_yamles/yamles_externalized_files)
-* Restructured entity type information into separate files to enable custom type support, see [Entity types in YAML configuration](/docs/apim_yamles/apim_yamles_references/yamles_types/)
-* Enhanced policy readability
-* Enhanced support for environmentalization with encryption
-* Fix issue of reordering fields in YAML files after configuration edits via tooling
-* Support `${env.CERT}` environmentalization of certificates in the YAML configuration
+* Support for [certificates and keys](/docs/apim_yamles/yamles_edit/#add-a-new-certificate-and-private-key-to-a-yaml-configuration) in standard PEM files.
+* Enhanced support for managing more configuration content in [externalized files](/docs/apim_yamles/yamles_externalized_files).
+* Restructured [entity type](/docs/apim_yamles/apim_yamles_references/yamles_types/) information into separate files to enable custom type support.
+* Enhanced policy readability.
+* Enhanced support for environmentalization with encryption.
+* Fix issue of reordering fields in YAML files after configuration edits via tooling.
+* Support for `${env.CERT}` environmentalization of certificates in the YAML configuration.
 
-See [September release notes](/docs/apim_relnotes/20200930_apimgr_relnotes/technical-preview-capability:-yaml-configuration-store) for an overview, and [YAML configuration docs](/docs/apim_yamles/) for more detailed information.
+See the [September 2020](/docs/apim_relnotes/20200930_apimgr_relnotes/#yaml-configuration-store-technical-preview-capability) release notes for an overview of this technical preview, and the [YAML configuration](/docs/apim_yamles/) documentation for more detailed information.
 
 ## Important changes
 
